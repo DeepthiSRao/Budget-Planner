@@ -9,12 +9,12 @@ const ExpenseTable = () => {
 
     return ( 
         <>
-            <Row>
-                <Col>Expenses</Col>
-                <Col>Expenses balance: $700</Col>
-                <Col>Calendar</Col>
-            </Row>
-            <Table borderless={true}>
+            <div className="d-flex flex-row justify-content-between mt-4">
+                <p className="fw-bold">Expenses</p>
+                <p className="fw-bold">Expenses balance: $700</p>
+                <p className="fw-bold">Calendar</p>
+            </div>
+            <table className="table">
                 <tbody>
                     {
                         res.map(item => (
@@ -34,7 +34,7 @@ const ExpenseTable = () => {
                         ))
                     }
                 </tbody>
-            </Table>
+            </table>
         </>
     );
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Col, Form, Row } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const BudgetForm = () => {
     const [budget, setBudget] = useState({
@@ -22,29 +22,24 @@ const BudgetForm = () => {
 
     return ( 
         <>
-            <div className='form'>
-                <div></div>
-            </div>
-            <Form>
-                <Row>
-                <Form.Group as={Col} controlId="amount" className="my-1">
-                    <Form.Control 
-                        type="number" 
-                        name="amount" 
+            <form class="row g-3">
+                <div className='col-sm col-lg-6'>
+                    <input
+                        type='number'
+                        name='amount' 
                         value={budget.amount || ''}
-                        onChange={handleChange}
                         placeholder="$Add or edit your budget"
-                        required />
-                </Form.Group>
-                <Button
-                    type="submit"
-                    as={Col}
-                    className="submit-btn col-3 my-1"
-                    onClick={handleSubmit}>
+                        required='required'
+                        className='form-control input-group-prepend'
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className='col-auto'>
+                    <button type='submit' className='btn btn-primary' onClick={handleSubmit}>
                         Save
-                </Button>
-                </Row>
-            </Form>     
+                    </button>
+                </div>
+            </form>
         </>
     );
 }

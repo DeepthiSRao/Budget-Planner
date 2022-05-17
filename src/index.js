@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import HomePage from './components/home-view/home-view';
-import './index.css';
+import './custom.scss';
 
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);

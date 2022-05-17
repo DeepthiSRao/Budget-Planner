@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Button, Col, Form, Row } from 'react-bootstrap';
 import { CATEGORY  as category } from '../../util/constants';
 
 const ExpenseForm = () => {
@@ -26,45 +25,48 @@ const ExpenseForm = () => {
 
     return ( 
         <>
-            <Form>
-                <Row>
-                <Form.Group as={Col} controlId="amount" className="my-1">
-                    <Form.Control 
-                        type="number" 
-                        name="amount" 
+            <p className="fs-5 fw-bold">Add Expenses</p>
+            <form class="row g-3 col-12">
+                <div className='col-sm col-lg-2'>
+                    <input
+                        type='number'
+                        name='amount' 
                         value={expense.amount || ''}
-                        onChange={handleChange}
                         placeholder="$0.00"
-                        required />
-                </Form.Group>
-                <Form.Group as={Col} controlId="description" className="my-1">
-                    <Form.Control 
-                        type="text" 
-                        name="description" 
-                        value={expense.description || ''}
+                        required='required'
+                        className='form-control'
                         onChange={handleChange}
+                    />
+                </div>
+                <div className='col-sm col-lg-4'>
+                    <input
+                        type='text'
+                        name='description' 
+                        value={expense.description || ''}
                         placeholder="Spent for?"
-                        required />
-                </Form.Group>
-                <Form.Group as={Col} controlId="category" className="my-1">
-                    <Form.Select
-                        name="category"
-                        onChange={handleChange} 
-                        defaultValue="Assign to a category">
-                        {category.map((item, i) => (
-                            <option key={i} value={item.name}>{item.name}</option>)
-                        )}
-                    </Form.Select>
-                </Form.Group>
-                <Button
-                    type="submit"
-                    as={Col}
-                    className="submit-btn col-2 my-1"
-                    onClick={handleSubmit}>
+                        required='required'
+                        className='form-control'
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className='col-sm col-lg-4'>
+                    <select 
+                        className="form-control form-select" 
+                        aria-label="select example" 
+                        name="category" 
+                        onChange={handleChange}>
+                            <option selected>Assign to a category</option>
+                            {category.map((item, i) => (
+                                <option key={i} value={item.name}>{item.name}</option>)
+                            )}
+                    </select>
+                </div>
+                <div className='col-auto'>
+                    <button type='submit' className='btn btn-primary' onClick={handleSubmit}>
                         Submit
-                </Button>
-                </Row>
-            </Form>     
+                    </button>
+                </div>
+            </form>
         </>
     );
 }

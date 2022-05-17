@@ -1,13 +1,13 @@
-import { Stack } from "react-bootstrap";
+import React from 'react';
 import ExpenseForm from "./expense-form";
 import ExpenseTable from "./expense-table";
 
 const ExpenseView = () => {
     return (
-        <Stack gap={3} className="col-md-6">
+        <div className="col-12">
             <ExpenseForm />
             <ExpenseTable />
-        </Stack>
+        </div>
     );
 }
  
