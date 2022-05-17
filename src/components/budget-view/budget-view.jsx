@@ -1,28 +1,20 @@
 import React from 'react';
-import { CircularProgressbar, buildStyles, CircularProgressbarWithChildren  } from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css';
+import { Stack } from 'react-bootstrap';
+import BudgetCategoryList from './budget-category-list';
+import BudgetForm from './budget-form';
+import BudgetProgressBar from './budget-progressbar';
+import { DATA as data } from '../../util/data';
 
 const BudgetView = () => {
-    const [budget, setBudget] = React.useState(1200);
-    const [expenses, setExpenses] = React.useState(150);
-    const percentage = Math.floor(expenses/budget * 100);
     return (
         <>
-            <CircularProgressbarWithChildren 
-                value={expenses} 
-                text={`$${budget}`}
-                strokeWidth={4} 
-                counterClockwise={true} 
-                styles={buildStyles({
-                    textSize: '12px',
-                    pathColor: 'blue',
-                    textColor: 'blue',
-                })}>
-                <div style={{ fontSize: 16, marginBottom: -60}} >
-                    {`${percentage}% Spent`}
-                </div>
-            </CircularProgressbarWithChildren> 
-        </>      
+            <Stack gap={3} className="col-md-6">
+                <BudgetProgressBar />
+                <h2>Your Budget for May 2022 is: <span>$0.00</span></h2>
+                <BudgetForm />
+                <BudgetCategoryList categoryList={data.categories} budget={data.budget} />
+            </Stack>
+        </>  
     );
 }
  

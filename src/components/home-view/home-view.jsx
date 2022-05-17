@@ -3,12 +3,14 @@ import BudgetView from '../budget-view/budget-view';
 import {
     Container, Stack, 
 } from 'react-bootstrap';
+import ExpenseView from '../expense-view/expense-view';
 
 const HomePage = () => {
     return ( 
-        <Container fluid>
-            <Stack gap={2} className="col-md-3 mx-auto my-5">
-                <BudgetView /> 
+        <Container>
+            <Stack gap={3} direction="horizontal" className="mt-5">
+                <BudgetView />
+                <ExpenseView /> 
             </Stack>
         </Container>
     );
