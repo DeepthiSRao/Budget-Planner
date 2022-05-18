@@ -2,27 +2,33 @@ import React from 'react';
 import { buildStyles, CircularProgressbarWithChildren  } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-const BudgetProgressBar = () => {
-    const [budget, setBudget] = React.useState(1200);
-    const [expenses, setExpenses] = React.useState(150);
-    const percentage = Math.floor(expenses/budget * 100);
-    
+const BudgetProgressBar = ({budget = 100, expenses = 40}) => {    
     return (
-        <div className="col-md-6 mx-auto">
+        <div className="col-6 mx-auto">
             <CircularProgressbarWithChildren 
                 value={expenses} 
-                text={`$${budget}`}
-                strokeWidth={4} 
-                counterClockwise={true} 
+                strokeWidth={10} 
+                counterClockwise={false} 
                 styles={buildStyles({
                     textSize: '12px',
-                    pathColor: 'blue',
-                    textColor: 'blue',
-                })}>
-                <div style={{ fontSize: 16, marginBottom: -60}} >
-                    {`${percentage}% Spent`}
+                    pathColor: '#DDF115',
+                    trailColor: '#F8F4FE',
+                })}
+            >
+                <div className='text-primary' style={{ fontSize: 16 }} >
+                    {`$${budget.toFixed(2)}`}
                 </div>
-            </CircularProgressbarWithChildren> 
+                <div style={{ fontSize: 16}} >
+                    {`Spent`}
+                </div>
+                <div style={{ fontSize: 16}} >
+                    {`of`}
+                </div>
+                <div style={{ fontSize: 16}} >
+                    {`$${expenses.toFixed(2)}`}
+                </div>
+            </CircularProgressbarWithChildren>
+            <p className="text-center m-2">As of today</p>
         </div>      
     );
 }

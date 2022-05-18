@@ -3,11 +3,14 @@ export const SET_BUDGET = "SET_BUDGET";
 
 // expense reducer
 export const ADD_EXPENSE = "ADD_EXPENSE";
-export const UPDATE_EXPENSE = "UPDATE_EXPENSE";
+export const EDIT_EXPENSE = "UPDATE_EXPENSE";
 export const DELETE_EXPENSE = "DELETE_EXPENSE";
 
 // category reducer
 export const ADD_CATEGORY = "ADD_CATEGORY";
+export const EDIT_CATEGORY = "EDIT_CATEGORY";
+export const DELETE_CATEGORY = "DELETE_CATEGORY";
+export const EDIT_CATEGORY_BUDGET = "EDIT_CATEGORY_BUDGET";
 
 // category reducer
 export const CATEGORY = [

@@ -1,16 +1,23 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import CategoryItem from './category-item';
 
-const BudgetCategoryList = ({categoryList, budget}) => {
+const BudgetCategoryList = ({categoryList, budgetAmount}) => {
     return (
-        <>
+        <div className='col-12 mt-4'>
+            <p className="fw-bold text-dark">Categories</p>
             {
                 categoryList.map(category =>(
-                    <CategoryItem key={category.id} category={category} budget={budget} />
+                    <CategoryItem key={category.id} category={category} budget={budgetAmount} />
                 ))
             }
-        </>
+        </div>
     );
 }
- 
-export default BudgetCategoryList;
+
+const mapStateToProps = ({budget, categories}) =>({
+    budgetAmount: budget?.amount || 0,
+    categoryList: categories
+})
+
+export default connect(mapStateToProps)(BudgetCategoryList);

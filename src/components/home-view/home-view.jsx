@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import BudgetView from '../budget-view/budget-view';
-import ExpenseView from '../expense-view/expense-view';
-import NavBar from '../header-view/navbar-view';
 
-const HomePage = () => {
-    const [data, setData] = useState({});
+import NavBar from '../header-view/navbar-view';
+import  { connect } from 'react-redux'
+import LeftView from '../budget-view/left-view';
+import RightView from '../expense-view/right-view';
+
+const HomePage = ({expenses, budget}) => {
+    console.log(expenses, budget)
+    // const [data, setData] = useState({});
 /* 
     //future use
     let Today = new Date().toLocaleDateString('en-us', { weekday: 'long' });
@@ -26,14 +29,19 @@ const HomePage = () => {
     return (
         <>
             <NavBar />
-            <div class="container py-5">
-                <div class="row">
-                    <div class="col-6"><BudgetView /></div>
-                    <div class="col-6"><ExpenseView /></div>
+            <div className="container py-5">
+                <div className="row">
+                    <div className="col-8"><LeftView /></div>
+                    <div className="col-4"><RightView /></div>
                 </div>
             </div>
         </>
     );
 }
- 
-export default HomePage;
+
+const mapStateToProps = ({expenses, budget}) => ({
+    expenses,
+    budget
+});
+
+export default connect(mapStateToProps)(HomePage);

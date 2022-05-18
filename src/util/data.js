@@ -29,11 +29,11 @@ export const DATA = {
     ]
 }
 
-export const formatExpenseTable = (data) => {
-    const category = DATA.categories.find(ele => ele.id === data.id);
+export const formatExpenseTable = (expense, categories) => {
+    const category = categories.find(ele => ele.id === expense.category);
 
     return {
-        ...data,
+        ...expense,
         category
     }
 }

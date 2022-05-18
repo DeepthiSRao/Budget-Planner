@@ -1,41 +1,41 @@
 import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { connect } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
+import { setBudget } from '../../actions';
 
-const BudgetForm = () => {
-    const [budget, setBudget] = useState({
-        'amount': 0,
-    });
-
-    // validating error
-    const handleChange = e => {
-        const {name, value} = e.target;
-
-        setBudget((prevState) =>({
-            [name] : value
-        }));
-    }
+const BudgetForm = ({dispatch}) => {
+    const [amount, setAmount] = useState(0);
 
     const handleSubmit = e => {
         e.preventDefault();
-        console.log(budget); 
+        const budget = {
+            id: uuidv4(),
+            amount: parseInt(amount),
+            date: new Date().toString()
+        }
+        dispatch(setBudget(budget));
+        setAmount(0);
     }
 
     return ( 
         <>
-            <form class="row g-3">
-                <div className='col-sm col-lg-6'>
+            <form className="row g-3 col-12 mb-5">
+                <div className='col-4'>
                     <input
                         type='number'
-                        name='amount' 
-                        value={budget.amount || ''}
+                        name='amount'
+                        value={amount || ''}
                         placeholder="$Add or edit your budget"
                         required='required'
-                        className='form-control input-group-prepend'
-                        onChange={handleChange}
+                        className='form-control input-group-prepend text-center'
+                        onChange={e => setAmount(e.target.value)}
                     />
+                    <div className="invalid-feedback">
+                        Please provide a valid zip.
+                    </div>
                 </div>
                 <div className='col-auto'>
-                    <button type='submit' className='btn btn-primary' onClick={handleSubmit}>
+                    <button type='submit' className='btn btn-primary fw-bold' onClick={handleSubmit}>
                         Save
                     </button>
                 </div>
@@ -44,4 +44,4 @@ const BudgetForm = () => {
     );
 }
  
-export default BudgetForm;
+export default connect()(BudgetForm);

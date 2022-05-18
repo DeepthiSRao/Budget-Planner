@@ -1,13 +1,20 @@
 // good-looking theme
-$primary: #5d3fd3;
+$primary: #6f1ae3;
 $secondary: #9ab6da;
-$dark: #386086;
+$dark: #280c4e;
 $light: #f2efee;
 $success: #66ab57;
 $info: #9ab6da;
 $warning: #e49b1f;
 $danger: #f44336;
-$form-select-indicator-color:#5d3fd3;
-
+$body-color: #280c4e;
+$form-select-indicator-color:#6f1ae3;
+$btn-padding-x: 24px;
+$btn-padding-y: 16px;
+$input-padding-x: 16px;
+$input-padding-y: 16px;
+$input-border-color: #280c4e;
+$input-btn-focus-color: #11AF3D;
+$input-btn-focus-width: .16rem !default;
 // import bootstrap styles at the bottom!
 @import '~bootstrap/scss/bootstrap.scss';

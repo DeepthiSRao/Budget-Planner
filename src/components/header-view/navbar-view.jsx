@@ -1,13 +1,12 @@
 import React from 'react';
+import { ReactComponent as BannerSvg } from '../../images/header.svg';
 
 const NavBar = () => {
     return (
         <>
-            <nav class="navbar navbar-light bg-light">
-            <div className="container-fluid">
-                <a className="navbar-brand" href="#">Navbar</a>
-            </div>
-        </nav>
+            <nav className="navbar p-0">
+                <BannerSvg className="container-fluid px-0" />
+            </nav>
         </>
     );
 }

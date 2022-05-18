@@ -1,17 +1,26 @@
 import React, { useState } from 'react';
-import { CATEGORY  as category } from '../../util/constants';
+import { connect } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
+import { addExpense } from '../../actions';
 
-const ExpenseForm = () => {
+const ExpenseForm = ({budgetAmount, categoryList, dispatch}) => {
     const [expense, setExpense] = useState({
-        'amount': 0,
-        'description': '',
-        'category': ''
+        amount: 0,
+        description: '',
+        category: null,
+        id: ''
     });
 
     // validating error
     const handleChange = e => {
-        const {name, value} = e.target;
+        let {name, value} = e.target;
+        console.log(name, value);
+        if(name === 'amount')
+            value = parseFloat(value);
 
+        if(name === 'category')
+            value = parseInt(value);
+  
         setExpense((prevState) =>({
             ...prevState,
             [name] : value
@@ -20,13 +29,25 @@ const ExpenseForm = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        console.log(expense); 
+        console.log(expense);
+
+        dispatch(addExpense({
+            ...expense,
+            id: uuidv4()
+        }));
+
+        // clear form after submitting
+        setExpense({
+            amount: 0,
+            description: '',
+            category: null,
+        });
     }
 
     return ( 
         <>
-            <p className="fs-5 fw-bold">Add Expenses</p>
-            <form class="row g-3 col-12">
+            <p className="fs-5 fw-bold w-100 text-start">Add Expenses</p>
+            <form className="row g-3 col-12 mb-5">
                 <div className='col-sm col-lg-2'>
                     <input
                         type='number'
@@ -38,7 +59,7 @@ const ExpenseForm = () => {
                         onChange={handleChange}
                     />
                 </div>
-                <div className='col-sm col-lg-4'>
+                <div className='col-sm col-lg-3'>
                     <input
                         type='text'
                         name='description' 
@@ -55,14 +76,16 @@ const ExpenseForm = () => {
                         aria-label="select example" 
                         name="category" 
                         onChange={handleChange}>
-                            <option selected>Assign to a category</option>
-                            {category.map((item, i) => (
-                                <option key={i} value={item.name}>{item.name}</option>)
+                            <option key={1} value={null} selected>Assign to a category</option>
+                            {categoryList.map((item, i) => (
+                                <option key={i} value={item.id}>
+                                    {item.name}
+                                </option>)
                             )}
                     </select>
                 </div>
                 <div className='col-auto'>
-                    <button type='submit' className='btn btn-primary' onClick={handleSubmit}>
+                    <button type='submit' className='btn btn-primary fw-bold' onClick={handleSubmit}>
                         Submit
                     </button>
                 </div>
@@ -70,5 +93,10 @@ const ExpenseForm = () => {
         </>
     );
 }
- 
-export default ExpenseForm;
+
+const mapStateToProps = ({budget, categories}) => ({
+    budgetAmount: budget.amount,
+    categoryList: categories
+});
+
+export default connect(mapStateToProps)(ExpenseForm);
