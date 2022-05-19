@@ -6,7 +6,7 @@ import { Modal,
          Col,
          } from 'react-bootstrap'
 import { connect } from 'react-redux';
-import { editExpense } from '../../actions';
+import { editCategoryBudget, editExpense } from '../../actions';
 import './budget.css';
 
 const EditModal = ({category, data, dispatch}) => {
@@ -41,12 +41,19 @@ const EditModal = ({category, data, dispatch}) => {
 
         //updated expense and close the modal
         dispatch(editExpense(expense));
+        // after updating the expense update category balance with difference
+        dispatch(editCategoryBudget({
+            id: expense.category,
+            amount: (expense.amount - data.expense.amount),
+            isAdd: true //add expenses to individual category
+        }));
+
         data.toggle();
     }
 
     return(
         <>
-            <Modal show={data.isOpen} onHide={data.toggle} centered closebutton>
+            <Modal show={data.isOpen} onHide={data.toggle} centered closebutton={true}>
                 <Modal.Header closeButton>
                 </Modal.Header>
                 <Modal.Body className='d-flex flex-column'>

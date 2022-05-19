@@ -4,7 +4,6 @@ import { ADD_EXPENSE,
 } from '../util/constants';
 
 export const expenseReducer = ( state = [], action) => {
-    console.log(state, action);
     switch(action.type){
         case ADD_EXPENSE:
             return  state.concat(action.expense);

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-import { addExpense } from '../../actions';
+import { addExpense, editCategoryBudget } from '../../actions';
 import './expenses.css';
 
 const ExpenseForm = ({budgetAmount, categoryList, dispatch}) => {
@@ -34,6 +34,13 @@ const ExpenseForm = ({budgetAmount, categoryList, dispatch}) => {
         dispatch(addExpense({
             ...expense,
             id: uuidv4()
+        }));
+
+        // after adding the budget update category balance
+        dispatch(editCategoryBudget({
+            id: expense.category,
+            amount: expense.amount,
+            isAdd: true //add expenses to individual category
         }));
 
         // clear form after submitting
@@ -77,7 +84,7 @@ const ExpenseForm = ({budgetAmount, categoryList, dispatch}) => {
                         name="category"
                         placeholder='Assign to a category' 
                         onChange={handleChange}>
-                        <option key={1} value={null} disabled>Assign to a category</option>
+                        <option key={0} value={null} disabled>Assign to a category</option>
                         {categoryList.map((item, i) => (
                             <option key={i} value={item.id}>
                                 {item.name}
@@ -86,7 +93,7 @@ const ExpenseForm = ({budgetAmount, categoryList, dispatch}) => {
                     </select>
                 </div>
                 <div className='col-auto'>
-                    <button type='submit' className='btn btn-primary fw-bold' onClick={handleSubmit}>
+                    <button type='submit' className='btn btn-primary fw-bold text-uppercase' onClick={handleSubmit}>
                         Submit
                     </button>
                 </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { formatExpenseTable } from '../../util/data';
+import { formatExpenseTable } from '../../util/helpers';
 import EditIcons from './edit-icon';
 
 import './expenses.css';

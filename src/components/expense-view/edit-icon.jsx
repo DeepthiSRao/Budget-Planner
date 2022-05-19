@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
-import { deleteExpense } from '../../actions';
+import { deleteExpense, editCategoryBudget } from '../../actions';
 
 class EditIcons extends Component {
     state = {
@@ -16,8 +16,15 @@ class EditIcons extends Component {
     } 
 
     deleteExpense = () => {
-        const { dispatch } = this.props;                
-        dispatch(deleteExpense(this.props.expense.id));
+        const { dispatch, id, expense } = this.props;
+        dispatch(deleteExpense(id));
+
+        // delete the expenses from category balance
+        dispatch(editCategoryBudget({
+            id: expense.category,
+            amount: expense.amount,
+            isAdd: false //delete expenses to individual category
+        }));
     }
 
     render(){
@@ -49,7 +56,7 @@ class EditIcons extends Component {
 }
 
 const mapStateToProps = ({expenses}, {id}) => ({
-    expense: expenses.filter((expense) => expense.id === id)[0],
+    expense: expenses.find((expense) => expense.id === id)
 });
 
 export default connect(mapStateToProps)(EditIcons);

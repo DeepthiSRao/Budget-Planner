@@ -1,9 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './budget.css';
 
-const CategoryItem = ({category, budget}) => {
+const CategoryItem = ({budget, category}) => {
     const {name, amount, color} = category;
-    const progress = (budget === 0) ? 0 : (amount/budget * 200).toFixed(2);
+    const progress = (budget === 0) ? 0 : (amount/budget * 100).toFixed(2);
 
     return (
         <>
@@ -41,5 +42,14 @@ const CategoryItem = ({category, budget}) => {
         </>
     );
 }
- 
-export default CategoryItem;
+
+const mapStateToProps = ({budget, categories}, {id}) => {
+    const category = categories.find(category => category.id === id);
+
+    return {
+        budget: budget?.amount || 0,
+        category: category
+    }
+}
+
+export default connect(mapStateToProps)(CategoryItem);

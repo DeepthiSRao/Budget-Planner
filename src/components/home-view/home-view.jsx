@@ -1,31 +1,10 @@
-import React, { useEffect, useState } from 'react';
-
+import React from 'react';
+import  { connect } from 'react-redux';
 import NavBar from '../header-view/navbar-view';
-import  { connect } from 'react-redux'
 import LeftView from '../budget-view/left-view';
 import RightView from '../expense-view/right-view';
 
-const HomePage = ({expenses, budget}) => {
-    console.log(expenses, budget)
-    // const [data, setData] = useState({});
-/* 
-    //future use
-    let Today = new Date().toLocaleDateString('en-us', { weekday: 'long' });
-	let day = new Date().toLocaleDateString('en-us', { day: 'numeric' });
-	let month = new Date().toLocaleDateString('en-us', { month: 'short' });
-
-    // save data to local storage
-    useEffect(() => {
-        localStorage.setItem('data', JSON.stringify(data))
-    }, [data]);
-
-    //during componnet mount fetch data from local storage
-    useEffect(() => {
-        const budget = JSON.parse(localStorage.getItem('data'));
-        if(budget)
-            setData(budget);
-    }, [data]); */
-
+const HomePage = ({expenses, budget}) => {    
     return (
         <>
             <NavBar />

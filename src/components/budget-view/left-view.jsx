@@ -4,7 +4,7 @@ import ExpenseForm from '../expense-view/expense-form';
 import ExpenseTable from '../expense-view/expense-table';
 import { connect } from 'react-redux';
 
-const LeftView = ({budgetAmount = 0}) => {
+const LeftView = ({budgetAmount}) => {
     const date = new Date();  // 2009-11-10
     const month = date.toLocaleString('default', { month: 'long' });
     const year = date.getFullYear();
@@ -22,7 +22,7 @@ const LeftView = ({budgetAmount = 0}) => {
 }
 
 const mapStateToProps = ({budget}) => ({
-    budgetAmount: budget.amount
+    budgetAmount: budget.amount ?? 0
 });
 
 export default connect(mapStateToProps)(LeftView);
