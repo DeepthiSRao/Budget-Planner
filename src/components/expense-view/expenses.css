@@ -6,3 +6,16 @@ tr {
     height: 20px;
     width: 20px;
 }
+
+.category-select option {
+    text-transform: capitalize;
+}
+
+.table-icon {
+    background-color: #fff !important;
+    border-bottom: #fff;
+}
+
+.table-icon:hover {
+    cursor: pointer;
+}

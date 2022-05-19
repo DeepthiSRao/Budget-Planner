@@ -16,9 +16,8 @@ export const addExpense = (expense) =>({
     expense
 });
 
-export const editExpense = (id, expense) =>({
+export const editExpense = (expense) =>({
    type: EDIT_EXPENSE,
-   id,
    expense
 });
 

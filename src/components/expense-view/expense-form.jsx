@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { addExpense } from '../../actions';
+import './expenses.css';
 
 const ExpenseForm = ({budgetAmount, categoryList, dispatch}) => {
     const [expense, setExpense] = useState({
@@ -14,7 +15,7 @@ const ExpenseForm = ({budgetAmount, categoryList, dispatch}) => {
     // validating error
     const handleChange = e => {
         let {name, value} = e.target;
-        console.log(name, value);
+
         if(name === 'amount')
             value = parseFloat(value);
 
@@ -29,7 +30,6 @@ const ExpenseForm = ({budgetAmount, categoryList, dispatch}) => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        console.log(expense);
 
         dispatch(addExpense({
             ...expense,
@@ -63,7 +63,7 @@ const ExpenseForm = ({budgetAmount, categoryList, dispatch}) => {
                     <input
                         type='text'
                         name='description' 
-                        value={expense.description || ''}
+                        value={expense.description}
                         placeholder="Spent for?"
                         required='required'
                         className='form-control'
@@ -72,16 +72,17 @@ const ExpenseForm = ({budgetAmount, categoryList, dispatch}) => {
                 </div>
                 <div className='col-sm col-lg-4'>
                     <select 
-                        className="form-control form-select" 
+                        className='form-control form-select category-select'
                         aria-label="select example" 
-                        name="category" 
+                        name="category"
+                        placeholder='Assign to a category' 
                         onChange={handleChange}>
-                            <option key={1} value={null} selected>Assign to a category</option>
-                            {categoryList.map((item, i) => (
-                                <option key={i} value={item.id}>
-                                    {item.name}
-                                </option>)
-                            )}
+                        <option key={1} value={null} disabled>Assign to a category</option>
+                        {categoryList.map((item, i) => (
+                            <option key={i} value={item.id}>
+                                {item.name}
+                            </option>)
+                        )}
                     </select>
                 </div>
                 <div className='col-auto'>

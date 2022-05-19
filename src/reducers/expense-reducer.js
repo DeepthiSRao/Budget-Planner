@@ -4,13 +4,14 @@ import { ADD_EXPENSE,
 } from '../util/constants';
 
 export const expenseReducer = ( state = [], action) => {
+    console.log(state, action);
     switch(action.type){
         case ADD_EXPENSE:
             return  state.concat(action.expense);
         case EDIT_EXPENSE:
             return state.map(expense => {
-                        if(expense.id === action.id)
-                            return {...expense, ...action.expense};
+                        if(expense.id === action.expense.id)
+                            return action.expense;
                         return expense;
                     });
         case DELETE_EXPENSE:
