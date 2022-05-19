@@ -35,7 +35,10 @@ const BudgetForm = ({dispatch}) => {
                     </div>
                 </div>
                 <div className='col-auto'>
-                    <button type='submit' className='btn btn-primary fw-bold' onClick={handleSubmit}>
+                    <button 
+                        type='submit' 
+                        className='btn btn-primary fw-bold' 
+                        onClick={handleSubmit}>
                         Save
                     </button>
                 </div>
