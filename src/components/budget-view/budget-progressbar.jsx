@@ -12,9 +12,9 @@ const BudgetProgressBar = ({totalBudget, totalExpenses}) => {
             <CircularProgressbarWithChildren 
                 value={totalProgress} 
                 strokeWidth={10} 
-                counterClockwise={false} 
+                counterClockwise={false}
                 styles={buildStyles({
-                    pathColor: '#DDF115',
+                    pathColor: '#6f1ae3',
                     trailColor: '#F8F4FE',
                 })}
             >

@@ -1,8 +1,8 @@
 import React from 'react';
 import  { connect } from 'react-redux';
 import NavBar from '../header-view/navbar-view';
-import RightView from '../expense-view/right-view';
 import ExpenseView from '../budget-view/expense-view';
+import ProgressView from '../expense-view/progress-view';
 
 const HomePage = ({expenses, budget}) => {    
     return (
@@ -10,8 +10,8 @@ const HomePage = ({expenses, budget}) => {
             <NavBar />
             <div className="container py-5">
                 <div className="row">
-                    <div className="col-7"><ExpenseView /></div>
-                    <div className="col-5"><RightView /></div>
+                    <div className="col-md-6"><ExpenseView /></div>
+                    <div className="col-md-4 offset-md-1"><ProgressView /></div>
                 </div>
             </div>
         </>

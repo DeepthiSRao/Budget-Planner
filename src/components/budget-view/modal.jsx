@@ -22,7 +22,7 @@ const EditModal = ({categoryList, data, dispatch}) => {
     // for editing selecting options with predefined value
     const options = formatCategoryOptions(categoryList);
     const optionValue = options.find(item => item.value === parseInt(expense.category));
-    
+
     const handleChange = e => {
         let {name, value} = e.target;
 
@@ -63,7 +63,7 @@ const EditModal = ({categoryList, data, dispatch}) => {
 
     return(
         <>
-            <Modal show={data.isOpen} onHide={data.toggle} centered closebutton={true}>
+            <Modal show={data.isOpen} onHide={data.toggle} centered closebutton={1}>
                 <Modal.Header closeButton>
                 </Modal.Header>
                 <Modal.Body className='d-flex flex-column'>

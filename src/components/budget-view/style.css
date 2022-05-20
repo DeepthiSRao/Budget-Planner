@@ -1,6 +1,7 @@
 .category {
     height: 24px;
     width: 24px;
+    min-height: 100%;
 }
 
 .category-select {

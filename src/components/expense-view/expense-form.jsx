@@ -13,6 +13,7 @@ const ExpenseForm = ({budgetAmount, categoryList, dispatch}) => {
         category: '',
         id: ''
     });
+    const [value, setValue] = useState(null);
 
     // validating error
     const handleChange = e => {
@@ -49,20 +50,22 @@ const ExpenseForm = ({budgetAmount, categoryList, dispatch}) => {
             isAdd: true //add expenses to individual category
         }));
 
-        // clear form after submitting
+        // clear form and rest selection list after submitting
         setExpense({
             amount: 0,
             description: '',
-            category: null,
+            category: '',
+            id: ''
         });
+        setValue(0)
     }
 
     return ( 
         <>
             <p className="fs-5 fw-bold w-100 text-start pb-2">Add Expenses</p>
-            <form className="row g-3 mb-5">
+            <form className="row g-3 mb-5" onSubmit={handleSubmit}>
                 <div className='row mb-2'>
-                    <div className='col-sm col-md-2'>
+                    <div className='col-sm-4 col-md-3'>
                         <input
                             type='number'
                             name='amount' 
@@ -73,7 +76,7 @@ const ExpenseForm = ({budgetAmount, categoryList, dispatch}) => {
                             onChange={handleChange}
                         />
                     </div>
-                    <div className='col-sm col-md-4'>
+                    <div className='col-sm-6 col-md-4'>
                         <input
                             type='text'
                             name='description' 
@@ -84,12 +87,15 @@ const ExpenseForm = ({budgetAmount, categoryList, dispatch}) => {
                             onChange={handleChange}
                         />
                     </div>
-                    <div className='col-sm col-md-5'>
-                        <SelectView options={formatCategoryOptions(categoryList)} handleSelect={handleSelect} />
+                    <div className='col-md-5'>
+                        <SelectView 
+                            options={formatCategoryOptions(categoryList)} 
+                            handleSelect={handleSelect} 
+                            resetVal={value} />
                     </div>
                 </div>
                 <div className='text-center'>
-                    <button type='submit' className='btn btn-primary col-md-2 fw-bold text-uppercase' onClick={handleSubmit}>
+                    <button type='submit' className='btn btn-primary col-sm-2 fw-bold text-uppercase'>
                         Submit
                     </button>
                 </div>

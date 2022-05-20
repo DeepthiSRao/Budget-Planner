@@ -30,7 +30,7 @@ const BudgetForm = ({dispatch}) => {
                         type='number'
                         name='amount'
                         value={amount || ''}
-                        placeholder="$Add or edit your budget"
+                        placeholder="Add or edit your budget"
                         required='required'
                         className='form-control input-group-prepend text-center'
                         onChange={e => setAmount(e.target.value)}

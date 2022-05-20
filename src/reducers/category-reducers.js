@@ -33,7 +33,6 @@ export const categoryReducer = ( state = initData, action) => {
                     const editedAmount = isAdd ? 
                                          ( category.amount + amount )
                                          : ( category.amount - amount );
-                    console.log(isAdd, editedAmount);
                     return {
                         ...category,
                         amount: editedAmount

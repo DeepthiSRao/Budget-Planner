@@ -29,10 +29,9 @@ class EditIcons extends Component {
 
     render(){
         return (
-            <div>
-                <div className="container-fluid">
-                    <div className="row justify-content-center">
-                        <div className='col-6 mr-2' 
+            <>
+                <div className="container row justify-content-center">
+                        <div className='col-md-6' 
                             style={{color: ' #6F1AE3'}}
                             data-bs-toggle="tooltip" 
                             data-bs-placement="right" 
@@ -40,17 +39,16 @@ class EditIcons extends Component {
                             onClick={this.toggleModal}>
                             <FontAwesomeIcon icon={faPen} />    
                         </div>
-                        <div className="col-6" onClick={this.deleteExpense}>
+                        <div className="col-md-6" onClick={this.deleteExpense}>
                             <FontAwesomeIcon icon={faTrashCan} />
                         </div>
-                    </div>
                 </div>
                 <EditModal 
                     isOpen={this.state.showModal} 
                     toggle={this.toggleModal}
                     expense={this.props.expense} 
                 />
-            </div>
+            </>
         );
     }
 }
