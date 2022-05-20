@@ -6,3 +6,17 @@ export const formatExpenseTable = (expense, categories) => {
         category
     }
 }
+
+export const formatCategoryOptions = (categories) => {
+    return categories.map(category => {
+        return {
+            label: (
+                <div className="d-flex">
+                    <div className='rounded-circle category-select my-auto' style={{background: category.color}}></div>
+                    <div className='text-lowercase text-cap'>{category.name}</div>
+                </div>
+            ),
+            value: category.id,
+        } 
+    });
+}

@@ -7,9 +7,11 @@ import { Modal,
          } from 'react-bootstrap'
 import { connect } from 'react-redux';
 import { editCategoryBudget, editExpense } from '../../actions';
-import './budget.css';
+import { formatCategoryOptions } from '../../util/helpers';
+import SelectView from './select-view';
+import './style.css';
 
-const EditModal = ({category, data, dispatch}) => {
+const EditModal = ({categoryList, data, dispatch}) => {
     const [expense, setExpense] = useState({
         amount: `${data.expense.amount}` || 0,
         description: `${data.expense.description}` || '',
@@ -17,6 +19,10 @@ const EditModal = ({category, data, dispatch}) => {
         id: `${data.expense.id}`,
     });
 
+    // for editing selecting options with predefined value
+    const options = formatCategoryOptions(categoryList);
+    const optionValue = options.find(item => item.value === parseInt(expense.category));
+    
     const handleChange = e => {
         let {name, value} = e.target;
 
@@ -51,6 +57,10 @@ const EditModal = ({category, data, dispatch}) => {
         data.toggle();
     }
 
+    const handleSelect = (value) =>{
+        expense.category = value;
+    }
+
     return(
         <>
             <Modal show={data.isOpen} onHide={data.toggle} centered closebutton={true}>
@@ -81,14 +91,11 @@ const EditModal = ({category, data, dispatch}) => {
                         </Row>
                         <Row className='mt-4'>
                             <Form.Group as={Col} controlId="category" className="my-1">
-                                <Form.Select
-                                    name="category"
-                                    onChange={handleChange}>
-                                    <option key={1} value={null} disabled>Assign to a category</option>
-                                    {category.map((item, i) => (
-                                        <option key={i} value={item.name}>{item.name}</option>)
-                                    )}
-                                </Form.Select>
+                                <SelectView 
+                                    options={options} 
+                                    handleSelect={handleSelect} 
+                                    optionValue={optionValue}   
+                                />
                             </Form.Group>
                         </Row>    
                         <Row className='mt-4'>
@@ -107,7 +114,7 @@ const EditModal = ({category, data, dispatch}) => {
 }
 
 const mapStateToProps = ({categories}, ownProps) => ({
-    category: categories,
+    categoryList: categories,
     data: ownProps
 });
 

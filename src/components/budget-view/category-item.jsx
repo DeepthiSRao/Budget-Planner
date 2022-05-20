@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import './budget.css';
+import './style.css';
 
 const CategoryItem = ({budget, category}) => {
     const {name, amount, color} = category;
@@ -14,7 +14,7 @@ const CategoryItem = ({budget, category}) => {
                     </div>
                 </div>
                 <div className='col-11 d-flex flex-column justify-content-center'>
-                    <div>{name}</div>
+                    <div className='text-lowercase text-cap fw-bold'>{name}</div>
                     <div className="progress">
                         <div 
                             className="progress-bar" 
@@ -32,7 +32,7 @@ const CategoryItem = ({budget, category}) => {
                         </div>
                     </div>
                     <div className="d-flex flex-row justify-content-between">
-                        <div>Spent ${amount.toFixed(2)}</div>
+                        <div>Spent $ {amount.toFixed(2)}</div>
                         <div>{`${progress}%`}</div>
                     </div>
                 </div>

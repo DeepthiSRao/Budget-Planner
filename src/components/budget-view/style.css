@@ -1,0 +1,48 @@
+.category {
+    height: 24px;
+    width: 24px;
+}
+
+.category-select {
+    height: 24px;
+    width: 24px;
+    margin-right: 1rem;
+}
+
+.modal-header {
+    border-bottom: 0 !important;
+}
+
+.btn-close {
+    transform: scale(1.2);
+    font-weight: 600;
+    opacity: 1 !important;
+}
+
+.btn-close:hover {
+    opacity: 0.4 !important;
+}
+
+.input-group {
+    width: 40% !important;
+}
+
+.text-cap::first-line {
+    text-transform: capitalize;
+}
+
+/* Expense table */
+.expense-content {
+    background-color: #f3f3f3;
+}
+
+.table-icon {
+    background-color: #fff !important;
+    border-bottom: #fff;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.table-icon:hover {
+    cursor: pointer;
+}

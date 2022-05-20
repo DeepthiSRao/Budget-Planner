@@ -13,39 +13,37 @@ const ExpenseTable = ({expenses, categoryList}) => {
     const res = expenses.map(item => formatExpenseTable(item, categoryList));
 
     return ( 
-        <div className="col-8 align-self-start">
+        <div className="col-10 align-self-start">
             {
                 expenses.length === 0 ? 
                 <div className='col-12 fw-bold mt-4'>No expenses added</div>
                 : (
                     <>
-                        <div className="d-flex flex-row justify-content-between">
-                            <p className="fw-bold text-dark">Expenses</p>
+                        <div className="d-flex flex-row">
+                           {/*  <p className="fw-bold text-dark">Expenses</p> */}
                             <p className="fw-bold text-dark">Expenses balance: $700</p>
-                            <p className="fw-bold text-dark">Calendar</p>
+                           {/*  <p className="fw-bold text-dark">Calendar</p> */}
                         </div>
-                        <table className="table" >
-                            <tbody>
-                                {
-                                    res.map(item => (
-                                        <>
-                                            <div className='row mb-2'>{date}</div>
-                                            <tr>
-                                                <td className='col-md-2'>{item.description}</td>
-                                                <td className='col-md-1'>${item.amount}</td>
-                                                <td className='col-md-1 my-auto'>
-                                                    <div className='rounded-circle category' style={{background: item.category.color}}></div>
-                                                </td>
-                                                <td className='col-md-4'>{item.category.name}</td>
-                                                <td className='col-md-2 table-icon'>
-                                                    <EditIcons id={item.id} />
-                                                </td>
-                                            </tr>
-                                        </>       
-                                    ))
-                                }
-                            </tbody>
-                        </table>
+                        {
+                            res.map(item => (
+                                <div className='conatiner' key={item.id}>
+                                    <div className='row'>
+                                        <div className='col-12 mb-2'>{date}</div>
+                                    </div>
+                                    <div className='d-flex expense-content my-auto'>
+                                        <div className='col-md-3 p-2'>{item.description}</div>
+                                        <div className='col-md-2 p-2'>${item.amount}</div>
+                                        <div className='col-md-1 my-auto'>
+                                            <div className='rounded-circle category' style={{background: item.category.color}}></div>
+                                        </div>
+                                        <div className='col-md-3 p-2 text-lowercase text-cap'>{item.category.name}</div>
+                                        <div className='col-md-3 p-2 table-icon'>
+                                            <EditIcons id={item.id} />
+                                        </div>
+                                    </div>
+                                </div>       
+                            ))
+                        }
                     </>
                 )}   
         </div>

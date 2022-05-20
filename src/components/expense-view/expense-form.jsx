@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { addExpense, editCategoryBudget } from '../../actions';
-import './expenses.css';
-
+import '../budget-view/style.css';
+import { formatCategoryOptions } from '../../util/helpers';
+import SelectView from '../budget-view/select-view';
+  
 const ExpenseForm = ({budgetAmount, categoryList, dispatch}) => {
     const [expense, setExpense] = useState({
         amount: 0,
         description: '',
-        category: null,
+        category: '',
         id: ''
     });
 
@@ -26,6 +28,10 @@ const ExpenseForm = ({budgetAmount, categoryList, dispatch}) => {
             ...prevState,
             [name] : value
         }));
+    }
+
+    const handleSelect = (value) =>{
+        expense.category = value;
     }
 
     const handleSubmit = e => {
@@ -53,47 +59,37 @@ const ExpenseForm = ({budgetAmount, categoryList, dispatch}) => {
 
     return ( 
         <>
-            <p className="fs-5 fw-bold w-100 text-start">Add Expenses</p>
-            <form className="row g-3 col-12 mb-5">
-                <div className='col-sm col-lg-2'>
-                    <input
-                        type='number'
-                        name='amount' 
-                        value={expense.amount || ''}
-                        placeholder="$0.00"
-                        required='required'
-                        className='form-control'
-                        onChange={handleChange}
-                    />
+            <p className="fs-5 fw-bold w-100 text-start pb-2">Add Expenses</p>
+            <form className="row g-3 mb-5">
+                <div className='row mb-2'>
+                    <div className='col-sm col-md-2'>
+                        <input
+                            type='number'
+                            name='amount' 
+                            value={expense.amount || ''}
+                            placeholder="$0.00"
+                            required='required'
+                            className='form-control'
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className='col-sm col-md-4'>
+                        <input
+                            type='text'
+                            name='description' 
+                            value={expense.description}
+                            placeholder="Spent for?"
+                            required='required'
+                            className='form-control'
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className='col-sm col-md-5'>
+                        <SelectView options={formatCategoryOptions(categoryList)} handleSelect={handleSelect} />
+                    </div>
                 </div>
-                <div className='col-sm col-lg-3'>
-                    <input
-                        type='text'
-                        name='description' 
-                        value={expense.description}
-                        placeholder="Spent for?"
-                        required='required'
-                        className='form-control'
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className='col-sm col-lg-4'>
-                    <select 
-                        className='form-control form-select category-select'
-                        aria-label="select example" 
-                        name="category"
-                        placeholder='Assign to a category' 
-                        onChange={handleChange}>
-                        <option key={0} value={null} disabled>Assign to a category</option>
-                        {categoryList.map((item, i) => (
-                            <option key={i} value={item.id}>
-                                {item.name}
-                            </option>)
-                        )}
-                    </select>
-                </div>
-                <div className='col-auto'>
-                    <button type='submit' className='btn btn-primary fw-bold text-uppercase' onClick={handleSubmit}>
+                <div className='text-center'>
+                    <button type='submit' className='btn btn-primary col-md-2 fw-bold text-uppercase' onClick={handleSubmit}>
                         Submit
                     </button>
                 </div>
