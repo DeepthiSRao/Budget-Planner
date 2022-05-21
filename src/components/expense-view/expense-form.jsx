@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { addExpense, editCategoryBudget } from '../../actions';
@@ -13,7 +13,8 @@ const ExpenseForm = ({budgetAmount, categoryList, dispatch}) => {
         category: '',
         id: ''
     });
-    const [value, setValue] = useState(null);
+    const options = formatCategoryOptions(categoryList)
+    const [selectVal, setSelectVal] = useState(options.value)
 
     // validating error
     const handleChange = e => {
@@ -32,6 +33,7 @@ const ExpenseForm = ({budgetAmount, categoryList, dispatch}) => {
     }
 
     const handleSelect = (value) =>{
+        setSelectVal(options.value);
         expense.category = value;
     }
 
@@ -50,6 +52,7 @@ const ExpenseForm = ({budgetAmount, categoryList, dispatch}) => {
             isAdd: true //add expenses to individual category
         }));
 
+        setSelectVal(null);
         // clear form and rest selection list after submitting
         setExpense({
             amount: 0,
@@ -57,7 +60,7 @@ const ExpenseForm = ({budgetAmount, categoryList, dispatch}) => {
             category: '',
             id: ''
         });
-        setValue(0)
+
     }
 
     return ( 
@@ -89,9 +92,10 @@ const ExpenseForm = ({budgetAmount, categoryList, dispatch}) => {
                     </div>
                     <div className='col-md-5'>
                         <SelectView 
-                            options={formatCategoryOptions(categoryList)} 
+                            options={options}
+                            value={selectVal}
                             handleSelect={handleSelect} 
-                            resetVal={value} />
+                        />
                     </div>
                 </div>
                 <div className='text-center'>

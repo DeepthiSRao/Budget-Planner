@@ -8,7 +8,7 @@ export const formatExpenseTable = (expense, categories) => {
 }
 
 export const formatCategoryOptions = (categories) => {
-    return categories.map(category => {
+    return categories.map((category, index) => {
         return {
             label: (
                 <div className="d-flex">
@@ -17,6 +17,7 @@ export const formatCategoryOptions = (categories) => {
                 </div>
             ),
             value: category.id,
+            id: index
         } 
     });
 }

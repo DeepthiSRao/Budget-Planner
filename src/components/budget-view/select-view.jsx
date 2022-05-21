@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React from 'react';
 import Select from 'react-select';
 import './style.css';
 
@@ -43,26 +43,17 @@ const customStyles = {
     indicatorSeparator: () => {},
 }
 
-const SelectView = ({options, optionValue, resetVal, handleSelect}) => {
-    const selectInputRef = useRef();
-
+const SelectView = ({options, value, optionValue, handleSelect}) => {
     const handleChange = (option) => {
         handleSelect(option.value);
     }
-
-    const onClear = () => {
-        selectInputRef.current.select.clearValue();
-    };
-
-    if(optionValue === null)
-        onClear();
 
     return (
         <>
             <Select
                 onChange={(option) => handleChange(option)}
                 options={options}
-                value={(resetVal===0) ? null: options.value}
+                value={value}
                 styles={customStyles}
                 className='form-control py-2 px-2'
                 defaultValue={!!optionValue ? optionValue : {label: "Category", value: "0"}}
