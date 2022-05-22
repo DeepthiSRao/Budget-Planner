@@ -33,8 +33,8 @@ const BudgetForm = ({budgetAmount, dispatch}) => {
                     {month} {year}
                 </button> */}
                 <div className='col-8 budget-form'>
-                    <div class="input-group">
-                        <div class="input-group-text">@</div>
+                    <div className="input-group">
+                        <div className="input-group-text">@</div>
                         <input
                             type='number'
                             name='amount'

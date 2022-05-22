@@ -31,7 +31,7 @@ const ExpenseTable = ({expenseList}) => {
                                         <div className='col-2 p-2 my-0 expense-content'>
                                             <div className='rounded-circle category' style={{background: item.category.color}}></div>
                                         </div>
-                                        <div className='col-4 p-2 expense-content text-lowercase text-cap d-none d-sm-block'>{item.category.name}</div>
+                                        <div className='col-4 p-2 expense-content text-truncate text-lowercase text-cap d-none d-sm-block'>{item.category.name}</div>
                                         <div className='col-auto table-icon'>
                                             <EditIcons id={item.id} />
                                         </div>
