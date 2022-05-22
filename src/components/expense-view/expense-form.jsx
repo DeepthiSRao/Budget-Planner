@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { addExpense, editCategoryBudget } from '../../actions';
-import '../budget-view/style.css';
 import { formatCategoryOptions } from '../../util/helpers';
-import SelectView from '../budget-view/select-view';
+import SelectView from './select-view';
   
 const ExpenseForm = ({budgetAmount, categoryList, dispatch}) => {
     const [expense, setExpense] = useState({
@@ -66,9 +65,9 @@ const ExpenseForm = ({budgetAmount, categoryList, dispatch}) => {
     return ( 
         <>
             <p className="fs-5 fw-bold w-100 text-start pb-2">Add Expenses</p>
-            <form className="row g-3 mb-5" onSubmit={handleSubmit}>
-                <div className='row mb-2'>
-                    <div className='col-sm-4 col-md-3'>
+            <form className="row mb-5" onSubmit={handleSubmit}>
+                <div className='row mb-3'>
+                    <div className='col-4 col-md-3'>
                         <input
                             type='number'
                             name='amount' 
@@ -79,7 +78,7 @@ const ExpenseForm = ({budgetAmount, categoryList, dispatch}) => {
                             onChange={handleChange}
                         />
                     </div>
-                    <div className='col-sm-6 col-md-4'>
+                    <div className='col-8 col-md-4'>
                         <input
                             type='text'
                             name='description' 
@@ -90,7 +89,7 @@ const ExpenseForm = ({budgetAmount, categoryList, dispatch}) => {
                             onChange={handleChange}
                         />
                     </div>
-                    <div className='col-md-5'>
+                    <div className='col-12 col-md-5 mt-3 mt-md-0'>
                         <SelectView 
                             options={options}
                             value={selectVal}
@@ -99,7 +98,7 @@ const ExpenseForm = ({budgetAmount, categoryList, dispatch}) => {
                     </div>
                 </div>
                 <div className='text-center'>
-                    <button type='submit' className='btn btn-primary col-sm-2 fw-bold text-uppercase'>
+                    <button type='submit' className='btn btn-primary col-lg-3 fw-bold text-uppercase'>
                         Submit
                     </button>
                 </div>

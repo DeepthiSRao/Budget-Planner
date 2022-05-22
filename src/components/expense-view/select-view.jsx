@@ -1,6 +1,5 @@
 import React from 'react';
 import Select from 'react-select';
-import './style.css';
 
 // styling for select
 const customStyles = {

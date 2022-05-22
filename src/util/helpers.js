@@ -1,9 +1,11 @@
 export const formatExpenseTable = (expense, categories) => {
     const category = categories.find(ele => ele.id === expense.category);
+    const totalExpenses = categories.reduce((acc,category) => (acc + category.amount),0);
 
     return {
         ...expense,
-        category
+        category,
+        totalExpenses
     }
 }
 

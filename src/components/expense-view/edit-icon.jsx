@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import EditModal from "../budget-view/modal";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
 import { deleteExpense, editCategoryBudget } from '../../actions';
+import EditExpenseModal from './edit-expense-modal';
 
 class EditIcons extends Component {
     state = {
@@ -30,8 +30,8 @@ class EditIcons extends Component {
     render(){
         return (
             <>
-                <div className="container row justify-content-center">
-                        <div className='col-md-6' 
+                <div className="container row mx-0">
+                        <div className='col-6' 
                             style={{color: ' #6F1AE3'}}
                             data-bs-toggle="tooltip" 
                             data-bs-placement="right" 
@@ -39,11 +39,11 @@ class EditIcons extends Component {
                             onClick={this.toggleModal}>
                             <FontAwesomeIcon icon={faPen} />    
                         </div>
-                        <div className="col-md-6" onClick={this.deleteExpense}>
+                        <div className='col-6' onClick={this.deleteExpense}>
                             <FontAwesomeIcon icon={faTrashCan} />
                         </div>
                 </div>
-                <EditModal 
+                <EditExpenseModal 
                     isOpen={this.state.showModal} 
                     toggle={this.toggleModal}
                     expense={this.props.expense} 

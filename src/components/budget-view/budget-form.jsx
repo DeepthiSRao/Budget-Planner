@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { setBudget } from '../../actions';
-import './style.css';
+import '../style.css';
 
-const BudgetForm = ({dispatch}) => {
+const BudgetForm = ({budgetAmount, dispatch}) => {
     const [amount, setAmount] = useState(0);
-    const [error, setError] = useState(false);
+    const date = new Date();  // 2009-11-10
+    const month = date.toLocaleString('default', { month: 'long' });
+    const year = date.getFullYear();
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -23,33 +25,40 @@ const BudgetForm = ({dispatch}) => {
 
     return ( 
         <>
-            <form className="row  g-3 col-12 mb-5 needs-validation" noValidate>
-                <div className='input-group flex-nowrap col-md-4 has-validation'>
-                    <span className="input-group-text fw-bold">$</span>
-                    <input
-                        type='number'
-                        name='amount'
-                        value={amount || ''}
-                        placeholder="Add or edit your budget"
-                        required='required'
-                        className='form-control input-group-prepend text-center'
-                        onChange={e => setAmount(e.target.value)}
-                    />
-                    <div className='invalid-feedback'>
-                        Please enter the amount of your budget and Save it.
+            <p className="fs-3 align-self-start mb-5">Your Budget for {month} {year} is: <span className='text-primary fw-bold'>${budgetAmount.toFixed(2)}</span></p>
+            <form className="row g-3 w-100 mb-5 needs-validation" noValidate>
+                {/* <button 
+                   type="button"
+                    className='btn btn-outline-primary fw-bold text-uppercase col-lg-3 col-sm-6'>
+                    {month} {year}
+                </button> */}
+                <div className='col-8 budget-form'>
+                    <div class="input-group">
+                        <div class="input-group-text">@</div>
+                        <input
+                            type='number'
+                            name='amount'
+                            value={amount || ''}
+                            placeholder="Add or edit your budget"
+                            required='required'
+                            className='form-control input-group-prepend text-center'
+                            onChange={e => setAmount(e.target.value)}
+                        />
                     </div>
                 </div>
-                <div className='col-auto'>
-                    <button 
-                        type='submit' 
-                        className='btn btn-primary fw-bold text-uppercase' 
-                        onClick={handleSubmit}>
-                        Save
-                    </button>
-                </div>
+                <button 
+                    type='submit' 
+                    className='btn btn-primary fw-bold text-uppercase col-3' 
+                    onClick={handleSubmit}>
+                    Save
+                </button>
             </form>
-        </>
+        </> 
     );
 }
- 
-export default connect()(BudgetForm);
+
+const mapStateToProps = ({budget}) => ({
+    budgetAmount: budget.amount ?? 0
+});
+
+export default connect(mapStateToProps)(BudgetForm);

@@ -1,14 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import './style.css';
 
 const CategoryItem = ({budget, category}) => {
     const {name, amount, color} = category;
-    const progress = (budget === 0) ? 0 : (amount/budget * 100).toFixed(2);
+    const progress = (amount === 0) ? 0 : (amount/budget * 100).toFixed(2);
 
     return (
         <>
-            <div className='row mt-3'>
+            <div className='row mt-2'>
                 <div className='col-1 my-auto'>
                     <div className='rounded-circle category' style={{background:color}}>
                     </div>

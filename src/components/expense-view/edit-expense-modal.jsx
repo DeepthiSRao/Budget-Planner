@@ -9,7 +9,6 @@ import { connect } from 'react-redux';
 import { editCategoryBudget, editExpense } from '../../actions';
 import { formatCategoryOptions } from '../../util/helpers';
 import SelectView from './select-view';
-import './style.css';
 
 const EditModal = ({categoryList, data, dispatch}) => {
     const [expense, setExpense] = useState({
