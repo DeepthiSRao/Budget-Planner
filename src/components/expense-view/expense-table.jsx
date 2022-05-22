@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { formatExpenseTable } from '../../util/helpers';
 import EditIcons from './edit-icon';
 
-const ExpenseTable = ({expenseList}) => {
+const ExpenseTable = ({expenseList, totalExpenses}) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     const date = new Date().toLocaleDateString('en-US', options);
 
@@ -16,7 +16,7 @@ const ExpenseTable = ({expenseList}) => {
                     <>
                         <div className="d-flex flex-row">
                            {/*  <p className="fw-bold text-dark">Expenses</p> */}
-                            <p className="fw-bold text-dark">Expenses balance: ${}</p>
+                            <p className="fw-bold text-dark">Expenses balance: ${totalExpenses}</p>
                            {/*  <p className="fw-bold text-dark">Calendar</p> */}
                         </div>
                         {
@@ -26,7 +26,7 @@ const ExpenseTable = ({expenseList}) => {
                                         <div className='col-12 mb-2'>{date}</div>
                                     </div>
                                     <div className='d-flex flex-row flex-nowrap align-items-center'>
-                                        <div className='col-lg-3 col-md-2 col-4 expense-content p-2'>{item.description}</div>
+                                        <div className='col-lg-3 col-md-2 col-4 expense-content text-truncate p-2'>{item.description}</div>
                                         <div className='col-2 expense-content p-2'>${item.amount}</div>
                                         <div className='col-2 p-2 my-0 expense-content'>
                                             <div className='rounded-circle category' style={{background: item.category.color}}></div>
@@ -45,8 +45,13 @@ const ExpenseTable = ({expenseList}) => {
     );
 }
 
-const mapStateToProps = ({expenses, categories}) => ({
-    expenseList : expenses?.map(item => formatExpenseTable(item, categories))
-});
+const mapStateToProps = ({expenses, categories}) => {
+    const totalExpenses = categories.reduce((acc,category) => (acc + category.amount),0);
+
+    return {
+        expenseList : expenses?.map(item => formatExpenseTable(item, categories)),
+        totalExpenses
+    }
+};
 
 export default connect(mapStateToProps)(ExpenseTable);
