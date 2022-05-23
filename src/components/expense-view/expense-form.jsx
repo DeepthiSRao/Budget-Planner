@@ -12,8 +12,9 @@ const ExpenseForm = ({budgetAmount, categoryList, dispatch}) => {
         category: '',
         id: ''
     });
-    const options = formatCategoryOptions(categoryList)
-    const [selectVal, setSelectVal] = useState(options.value)
+    const [error, setError] = useState({});
+    const options = formatCategoryOptions(categoryList);
+    const [selectVal, setSelectVal] = useState(options.value);
 
     // validating error
     const handleChange = e => {
@@ -39,6 +40,8 @@ const ExpenseForm = ({budgetAmount, categoryList, dispatch}) => {
     const handleSubmit = e => {
         e.preventDefault();
 
+        // validate for error
+        
         dispatch(addExpense({
             ...expense,
             id: uuidv4()

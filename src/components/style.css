@@ -27,6 +27,23 @@
     text-transform: capitalize;
 }
 
+/* Budget form */
+.invalid-feedback {
+    margin-top: 0 !important;
+}
+
+.budget-form input-group {
+    padding-left: 0 !important;
+}
+
+.budget-form .btn {
+    margin-left: calc(var(--bs-gutter-x) * 0.5);
+}
+
+.form-label {
+    margin-bottom: 0 !important;
+}
+
 /* Expense table */
 .expense-content {
     background-color: #f3f3f3;
@@ -42,10 +59,6 @@
     cursor: pointer;
 }
 
-.budget-form {
-    margin-right: calc(var(--bs-gutter-x));
-    padding-left: 0 !important;
-}
 
 @media (max-width: 576px) {
 }
