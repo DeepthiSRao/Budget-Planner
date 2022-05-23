@@ -16,7 +16,9 @@ const ExpenseTable = ({expenseList, totalExpenses}) => {
                     <>
                         <div className="d-flex flex-row">
                            {/*  <p className="fw-bold text-dark">Expenses</p> */}
-                            <p className="fw-bold text-dark">Expenses balance: ${totalExpenses}</p>
+                            <p className="fw-bold text-dark">
+                                Expenses balance: ${totalExpenses.toFixed(2)}
+                            </p>
                            {/*  <p className="fw-bold text-dark">Calendar</p> */}
                         </div>
                         {

@@ -11,7 +11,7 @@ const HomePage = ({expenses, budget}) => {
         <>
             <NavBar />
             <div className="container py-4">
-                <div class="row">
+                <div className="row">
                     <div className="col-md-6 order-2 order-md-1">
                         <ExpenseView />
                     </div>

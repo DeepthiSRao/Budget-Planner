@@ -3,9 +3,13 @@ import { connect } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { setBudget } from '../../actions';
 import '../style.css';
+import SuccessModal from './sucess-modal';
 
 const BudgetForm = ({budgetAmount, dispatch}) => {
     const [amount, setAmount] = useState(0);
+    const [showModal, setShowModal] = useState(false);
+
+    // for displaying date
     const date = new Date();  // 2009-11-10
     const month = date.toLocaleString('default', { month: 'long' });
     const year = date.getFullYear();
@@ -21,7 +25,12 @@ const BudgetForm = ({budgetAmount, dispatch}) => {
 
         dispatch(setBudget(budget));
         setAmount(0);
+        toggleModal();
     }
+
+    const toggleModal = () => {
+        setShowModal(prevState => !prevState);
+    } 
 
     return ( 
         <>
@@ -53,6 +62,10 @@ const BudgetForm = ({budgetAmount, dispatch}) => {
                     Save
                 </button>
             </form>
+            <SuccessModal
+                isOpen={showModal}
+                toggle={toggleModal}
+            />
         </> 
     );
 }

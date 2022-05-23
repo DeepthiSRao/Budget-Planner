@@ -4,7 +4,7 @@ import { ReactComponent as BannerSvg } from '../../images/header.svg';
 const NavBar = () => {
     return (
         <>
-            <nav className="navbar p-0">
+            <nav className="navbar navbar-fixed p-0">
                 <BannerSvg className="container-fluid px-0" />
             </nav>
         </>
