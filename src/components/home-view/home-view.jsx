@@ -11,13 +11,24 @@ const HomePage = ({expenses, budget}) => {
         <>
             <NavBar />
             <div className="container py-4">
-                <div className="row">
-                    <div className="col-md-6 order-2 order-md-1">
-                        <ExpenseView />
+                <div className="d-none d-sm-block">
+                    <div className="row">
+                        <div className="col-md-6">
+                            <ExpenseView />
+                        </div>
+                        <div className="col-md-5">
+                            <BudgetProgressBar />
+                            <BudgetCategoryList />
+                        </div>
                     </div>
-                    <div className="col-md-5 offset-md-1 order-1 order-md-2">
-                        <BudgetProgressBar />
-                        <BudgetCategoryList />
+                </div>
+                <div className="d-md-none">
+                    <div className="row g-3">
+                        <div className="col-md-10">
+                            <BudgetProgressBar />
+                            <ExpenseView />
+                            <BudgetCategoryList />
+                        </div>
                     </div>
                 </div>
             </div>

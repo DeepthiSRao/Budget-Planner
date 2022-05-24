@@ -1,4 +1,4 @@
-export const validate = (object) => {
+export const validate = (object, budget) => {
     let errors = {};
 
     for (const [fieldName, value] of Object.entries(object)) {
@@ -8,6 +8,8 @@ export const validate = (object) => {
                     errors.amount = 'Expense amount is required';
                 else if(value <= 0)
                     errors.amount = 'Expense amount must be greater than zero';
+                else if(value > budget)
+                    errors.amount = 'Expense amount must be less than budge limit';
                 else
                     errors.amount = '';
                 break;

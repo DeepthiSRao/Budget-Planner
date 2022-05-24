@@ -44,7 +44,9 @@ const BudgetForm = ({budgetAmount, dispatch}) => {
 
     return ( 
         <>
-            <p className="fs-3 align-self-start mb-5">Your Budget for {month} {year} is: <span className='text-primary fw-bold'>${budgetAmount.toFixed(2)}</span></p>
+            <p className="fs-3 align-self-start mb-5">
+                Your Budget for {month} {year} is: <span className='text-primary fw-bold'>$ {budgetAmount.toFixed(2)}</span>
+            </p>
             <form className="w-100 mb-5 needs-validation" noValidate>
                 {/* <button 
                    type="button"

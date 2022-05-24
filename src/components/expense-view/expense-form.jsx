@@ -61,10 +61,11 @@ class ExpenseForm extends Component {
 
     handleSubmit = e => {
         const { expense } = this.state;
+        const { budgetAmount, totalExpenses} = this.props;
 
         e.preventDefault();
-        const err = validate(expense);
-
+            
+        const err = validate(expense, budgetAmount - totalExpenses);
         this.setState((prevState) =>({
             ...prevState,
             error: {
@@ -100,7 +101,7 @@ class ExpenseForm extends Component {
     }
 
     render() {
-        const { options } = this.props;
+        const { options, budgetAmount } = this.props;
         const { expense, error, selectVal } = this.state;
 
         return (
@@ -115,7 +116,7 @@ class ExpenseForm extends Component {
                             value={expense.amount || ''}
                             placeholder="$0.00"
                             required='required'
-                            className={`form-control ${error.amount ? 'is-invalid' : ''}`}
+                            className={`form-control expense-amount ${error.amount ? 'is-invalid' : ''}`}
                             onChange={(e) => this.handleChange(e)}
                         />
                         <div className="invalid-feedback">
@@ -148,6 +149,10 @@ class ExpenseForm extends Component {
                 <div className='text-center'>
                     <button 
                         type='submit'
+                        disabled={budgetAmount === 0}
+                        data-bs-toggle="tooltip" 
+                        data-bs-placement="right" 
+                        title={budgetAmount === 0 ? "Set your budget to add expense" : "Add expense"}
                         className='btn btn-primary col-lg-3 fw-bold text-uppercase'>
                         Submit
                     </button>
@@ -159,8 +164,9 @@ class ExpenseForm extends Component {
 }
  
 const mapStateToProps = ({budget, categories}) => ({
-    budgetAmount: budget.amount,
-    options: formatCategoryOptions(categories)
+    budgetAmount: budget.amount || 0,
+    totalExpenses: categories.reduce((acc,category) => (acc + category.amount),0) || 0,
+    options: formatCategoryOptions(categories),
 });
 
 export default connect(mapStateToProps)(ExpenseForm);

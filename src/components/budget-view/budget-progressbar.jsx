@@ -48,4 +48,5 @@ const mapStateToProps = ({categories, budget}) =>{
         totalExpenses: totalExpenses ?? 0
     }
 }
+
 export default connect(mapStateToProps)(BudgetProgressBar);

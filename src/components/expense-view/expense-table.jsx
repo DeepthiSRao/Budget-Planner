@@ -23,7 +23,7 @@ const ExpenseTable = ({expenseList, totalExpenses}) => {
                         </div>
                         {
                             expenseList.map(item => (
-                                <div className='conatiner' key={item.id}>
+                                <div className='conatiner mb-5' key={item.id}>
                                     <div className='row'>
                                         <div className='col-12 mb-2 fst-italic fw-light expense-date'>{date}</div>
                                     </div>
