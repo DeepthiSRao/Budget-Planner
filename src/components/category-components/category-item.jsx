@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 const CategoryItem = ({budget, category}) => {
     const {name, amount, color} = category;
-    const progress = (amount === 0 || budget === 0) ? 0 : (amount/budget * 100).toFixed(2);
+    const progress = (amount === 0 || budget === 0) ? 0 : Math.abs((amount/budget * 100).toFixed(2));
 
     return (
         <>
@@ -31,7 +31,7 @@ const CategoryItem = ({budget, category}) => {
                         </div>
                     </div>
                     <div className="d-flex flex-row justify-content-between">
-                        <div>Spent $ {amount.toFixed(2)}</div>
+                        <div>Spent $ {Math.abs(amount.toFixed(2))}</div>
                         <div>{`${progress}%`}</div>
                     </div>
                 </div>

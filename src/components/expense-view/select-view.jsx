@@ -43,7 +43,6 @@ const customStyles = {
 }
 
 const SelectView = ({options, value, optionValue, handleSelect, error}) => {
-    console.log('From parent', value);
     const handleChange = (option) => {
         handleSelect(option.value);
     }
