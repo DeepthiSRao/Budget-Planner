@@ -5,7 +5,7 @@ import 'react-circular-progressbar/dist/styles.css';
 import logo from '../../images/click.png';
 
 const BudgetProgressBar = ({totalBudget, totalExpenses}) => {
-    const totalProgress = ((totalExpenses/totalBudget) * 100).toFixed(2);   
+    const totalProgress = (totalBudget === 0) ? 0 : ((totalExpenses/totalBudget) * 100).toFixed(2);   
     const balance = totalBudget - totalExpenses;
 
     return (
