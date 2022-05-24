@@ -1,15 +1,16 @@
 {
   "files": {
-    "main.css": "/Budget-Planner/static/css/main.e6b66187.css",
-    "main.js": "/Budget-Planner/static/js/main.465899f2.js",
-    "static/media/header.svg": "/Budget-Planner/static/media/header.1e45b1a1cb89f6b604ca5e148f4f646b.svg",
+    "main.css": "/Budget-Planner/static/css/main.bdd500b5.css",
+    "main.js": "/Budget-Planner/static/js/main.03f6a84e.js",
+    "static/media/header.svg": "/Budget-Planner/static/media/header.2eecd5013234650e4d2c2836930f2d80.svg",
+    "static/media/header-mobile.svg": "/Budget-Planner/static/media/header-mobile.cd901bc62804006642f44d8d9c99fd03.svg",
     "static/media/success.png": "/Budget-Planner/static/media/success.4256024e0d91a4d7dedf.png",
     "index.html": "/Budget-Planner/index.html",
-    "main.e6b66187.css.map": "/Budget-Planner/static/css/main.e6b66187.css.map",
-    "main.465899f2.js.map": "/Budget-Planner/static/js/main.465899f2.js.map"
+    "main.bdd500b5.css.map": "/Budget-Planner/static/css/main.bdd500b5.css.map",
+    "main.03f6a84e.js.map": "/Budget-Planner/static/js/main.03f6a84e.js.map"
   },
   "entrypoints": [
-    "static/css/main.e6b66187.css",
-    "static/js/main.465899f2.js"
+    "static/css/main.bdd500b5.css",
+    "static/js/main.03f6a84e.js"
   ]
 }
