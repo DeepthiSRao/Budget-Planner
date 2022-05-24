@@ -15,7 +15,7 @@ export const formatCategoryOptions = (categories) => {
             label: (
                 <div className="d-flex">
                     <div className='rounded-circle category-select my-auto' style={{background: category.color}}></div>
-                    <div className='text-lowercase text-cap'>{category.name}</div>
+                    <div className='text-lowercase text-cap text-truncate'>{category.name}</div>
                 </div>
             ),
             value: category.id,

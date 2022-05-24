@@ -17,10 +17,12 @@ const BudgetForm = ({budgetAmount, dispatch}) => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        if(parseInt(amount) !== 0){
+        const budgeAmount = parseInt(amount);
+
+        if(budgeAmount > 0){
             const budget = {
                 id: uuidv4(),
-                amount: parseInt(amount),
+                amount: budgeAmount,
                 date: new Date().toString()
             }
     
@@ -65,7 +67,7 @@ const BudgetForm = ({budgetAmount, dispatch}) => {
                                 value={amount || ''}
                                 onChange={e => setAmount(e.target.value)}
                                 placeholder='Add or edit your budget'
-                                className={ error.amount ? 'form-control is-invalid' : 'form-control'}
+                                className={`form-control ${error.amount ? 'is-invalid' : ''}`}
                                 id="validationCustomUsername" 
                                 aria-describedby="inputGroupPrepend" 
                                 required />

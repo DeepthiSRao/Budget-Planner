@@ -35,6 +35,7 @@ const ExpenseForm = ({budgetAmount, categoryList, dispatch}) => {
     const handleSelect = (value) =>{
         setSelectVal(options.value);
         expense.category = value;
+        console.log(selectVal, value);
     }
 
     const handleSubmit = e => {

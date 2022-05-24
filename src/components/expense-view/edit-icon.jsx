@@ -30,7 +30,7 @@ class EditIcons extends Component {
     render(){
         return (
             <>
-                <div className="container row mx-0">
+                <div className="row mx-1">
                         <div className='col-6' 
                             style={{color: ' #6F1AE3'}}
                             data-bs-toggle="tooltip" 

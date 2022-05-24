@@ -11,7 +11,7 @@ const BudgetProgressBar = ({totalBudget, totalExpenses}) => {
     return (
         <>
             <div className='col-md-8 col-8 px-3 mx-auto'>
-                <div className='text-center fs-3 mb-3 fw-bold'>Balance: ${balance.toFixed(2)}</div> 
+                <p className='text-center fs-3 fw-bold pb-2'>Balance: ${balance.toFixed(2)}</p> 
                 <CircularProgressbarWithChildren 
                     value={totalProgress} 
                     strokeWidth={10}
@@ -35,10 +35,6 @@ const BudgetProgressBar = ({totalBudget, totalExpenses}) => {
                     </div>
                 </CircularProgressbarWithChildren>
                 <p className="text-center mt-3">As of today</p>
-            </div>
-            <div className='d-flex justify-content-center d-sm-none'>
-                <img src={logo} alt='logo' className='category col-2 px-1 my-auto'/>
-                <div style={{fontSize: '1rem'}}>Set budget for this month</div>
             </div>
         </>      
     );

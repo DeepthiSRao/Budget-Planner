@@ -1,6 +1,6 @@
 .category {
-    height: 1.5rem;
-    width: 1.5rem;
+    height: calc(1.5 * var(--bs-body-font-size));
+    width: calc(1.5 * var(--bs-body-font-size));
 }
 
 .category-select {
@@ -30,6 +30,7 @@
 /* Budget form */
 .invalid-feedback {
     margin-top: 0 !important;
+    font-size: calc(0.8 * var(--bs-body-font-size));
 }
 
 .budget-form input-group {
@@ -59,6 +60,9 @@
     cursor: pointer;
 }
 
+.expense-date {
+    font-size:  calc(0.85 * var(--bs-body-font-size));
+}
 
 @media (max-width: 576px) {
 }

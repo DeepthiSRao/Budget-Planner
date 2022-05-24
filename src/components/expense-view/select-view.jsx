@@ -42,7 +42,8 @@ const customStyles = {
     indicatorSeparator: () => {},
 }
 
-const SelectView = ({options, value, optionValue, handleSelect}) => {
+const SelectView = ({options, value, optionValue, handleSelect, error}) => {
+    console.log('From parent', value);
     const handleChange = (option) => {
         handleSelect(option.value);
     }
@@ -54,10 +55,13 @@ const SelectView = ({options, value, optionValue, handleSelect}) => {
                 options={options}
                 value={value}
                 styles={customStyles}
-                className='form-control py-2 px-2'
+                className={`form-control py-2 px-2 ${error ? 'is-invalid' : ''}`}
                 defaultValue={!!optionValue ? optionValue : {label: "Category", value: "0"}}
                 noOptionsMessage={() => 'No Categories Selected'}
             />
+            <div className="invalid-feedback">
+                {error}
+            </div>
         </>
     );
 }
